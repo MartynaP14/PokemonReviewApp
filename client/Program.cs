@@ -10,6 +10,7 @@ var option = 0;
 var httpClient = new HttpClient();
 var pokemonClient = new PokemonClient(httpClient);
 
+
 while (option != 7 )
 {
     Console.WriteLine("Please enter the option");
@@ -30,7 +31,30 @@ while (option != 7 )
 
     }
 
+    if (option == 2)
+    {
+        var id = Int32.Parse(Console.ReadLine());
+        HttpResponseMessage response = await pokemonClient.GetCountriesById(id);
+        Console.WriteLine(response);
+        var responseBody = await response.Content.ReadAsStringAsync();
+        Console.WriteLine(responseBody);
+
     
+    }
+
+    if (option == 3)
+    {
+        
+
+
+
+    }
+
+
+
+
+
+
 
 
 }

@@ -10,6 +10,7 @@ namespace pokemonAppClient.Interface
     public interface IPokemonClient
     {
         public Task<HttpResponseMessage> GetCountriesAsync();
+        public Task<HttpResponseMessage> GetCountriesById( int id);
 
     }
 }
