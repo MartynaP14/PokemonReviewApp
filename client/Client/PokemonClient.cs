@@ -27,7 +27,12 @@ namespace pokemonAppClient.Client
         {
             return await _httpClient.GetAsync("api/country");
            
-        } 
+        }
+
+         public async Task<HttpResponseMessage> GetCountriesById(int id)
+        {
+            return await _httpClient.GetAsync($"api/country/{id}");
+        }
 
 
 
