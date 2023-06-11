@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using pokemonAppClient.Client;
 using PokemonReviewApp.Dto;
+using System.Net.Http;
 using System.Text.Json;
 
 
@@ -18,6 +19,7 @@ while (option != 7 )
     Console.WriteLine("Option two - Country by ID ");
     Console.WriteLine("Option three - Create Country ");
     Console.WriteLine("Option four - Delete Country ");
+    Console.WriteLine("Option five - Updade Country");
     Console.WriteLine("Option seven - Exit ");
     option = Int32.Parse(Console.ReadLine());
 
@@ -44,7 +46,10 @@ while (option != 7 )
 
     if (option == 3)
     {
-        var countryDto = new CountryDto() { Name = "UKkk" };
+        
+        Console.Write("Please give me name of country to create ");
+        var name = Console.ReadLine();
+        var countryDto = new CountryDto() { Name = name};
         string jsonPayLoad = JsonSerializer.Serialize(countryDto);
         HttpContent httpContent = new StringContent(jsonPayLoad, System.Text.Encoding.UTF8, "application/json");
         HttpResponseMessage responsetwo = await pokemonClient.CreateNewCountry( httpContent);
@@ -60,6 +65,22 @@ while (option != 7 )
         HttpResponseMessage response= await pokemonClient.DeleteCountry(id);
         var responseBody = await response.Content.ReadAsStringAsync();
         Console.WriteLine(responseBody);
+    }
+
+
+    if (option == 5)
+    {
+        Console.Write("Please give me id of a country to update ");
+        var id = Int32.Parse(Console.ReadLine());
+        Console.Write("Please give me name of country to update ");
+        var name = Console.ReadLine();
+        var countryDtotwo = new CountryDto() { Id = id, Name = name };
+        string jsonPayLoadtwo = JsonSerializer.Serialize(countryDtotwo);
+        HttpContent httpContent = new StringContent(jsonPayLoadtwo, System.Text.Encoding.UTF8, "application/json");
+        HttpResponseMessage response = await pokemonClient.UpdateCountry(  id, httpContent);
+
+        var responseBodyfour = await response.Content.ReadAsStringAsync();
+        Console.WriteLine("updated result :" + response);
     }
 
 
