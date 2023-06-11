@@ -44,11 +44,25 @@ while (option != 7 )
 
     if (option == 3)
     {
-        
+        var countryDto = new CountryDto() { Name = "UKkk" };
+        string jsonPayLoad = JsonSerializer.Serialize(countryDto);
+        HttpContent httpContent = new StringContent(jsonPayLoad, System.Text.Encoding.UTF8, "application/json");
+        HttpResponseMessage responsetwo = await pokemonClient.CreateNewCountry( httpContent);
 
-
+        var responseBodytwo = await responsetwo.Content.ReadAsStringAsync();
+        Console.WriteLine(responseBodytwo);
 
     }
+
+    if (option == 4)
+    {
+        var id = Int32.Parse(Console.ReadLine());
+        HttpResponseMessage response= await pokemonClient.DeleteCountry(id);
+        var responseBody = await response.Content.ReadAsStringAsync();
+        Console.WriteLine(responseBody);
+    }
+
+
 
 
 

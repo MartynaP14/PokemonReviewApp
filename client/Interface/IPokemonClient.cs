@@ -11,6 +11,11 @@ namespace pokemonAppClient.Interface
     {
         public Task<HttpResponseMessage> GetCountriesAsync();
         public Task<HttpResponseMessage> GetCountriesById( int id);
+        public Task<HttpResponseMessage> CreateNewCountry(HttpContent httpContent);
+
+        public Task<HttpResponseMessage> DeleteCountry(int id);
+
+
 
     }
 }

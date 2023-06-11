@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Http;
 using pokemonAppClient.Interface;
+using PokemonReviewApp.Dto;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -29,10 +31,24 @@ namespace pokemonAppClient.Client
            
         }
 
-         public async Task<HttpResponseMessage> GetCountriesById(int id)
+        public async Task<HttpResponseMessage> GetCountriesById(int id)
         {
             return await _httpClient.GetAsync($"api/country/{id}");
         }
+
+        public async Task<HttpResponseMessage> CreateNewCountry(HttpContent httpContent)
+        {
+            return await _httpClient.PostAsync("api/Country", httpContent);
+        }
+
+        public async Task<HttpResponseMessage> DeleteCountry(int id)
+        {
+            return await _httpClient.DeleteAsync($"api/country/{id}");
+        }
+
+
+
+
 
 
 
