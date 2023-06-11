@@ -15,7 +15,7 @@ namespace pokemonAppClient.Interface
 
         public Task<HttpResponseMessage> DeleteCountry(int id);
 
-
+        public Task<HttpResponseMessage> UpdateCountry(int id, HttpContent httpContent);
 
     }
 }

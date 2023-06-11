@@ -48,6 +48,13 @@ namespace pokemonAppClient.Client
 
 
 
+        public async Task<HttpResponseMessage> UpdateCountry(int id, HttpContent httpContent)
+        {
+            return await _httpClient.PutAsync($"api/country/{id}", httpContent);
+        }
+
+
+
 
 
 
